@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Outpost 31: Thin Ice</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="selectionScreen" class="selection-screen">
+    <section class="selection-hero">
+      <div>
+        <p class="eyebrow">U.S. Outpost 31</p>
+        <h1>Thin Ice</h1>
+        <p class="intro">A board-driven paranoia game at the edge of Antarctica.</p>
+      </div>
+      <div class="selection-status">
+        <span>Day 1</span>
+        <span>Familiarization</span>
+        <span>No fixed killer</span>
+      </div>
+    </section>
+
+    <main class="selection-layout">
+      <div>
+        <div class="section-title">Choose Your Man</div>
+        <div id="characterSelect" class="character-select"></div>
+      </div>
+      <aside id="selectionDetails" class="selection-details"></aside>
+    </main>
+  </div>
+
+  <div id="gameApp" class="game-app hidden">
+    <header class="topbar">
+      <div class="brand">
+        <span class="status-light"></span>
+        <div>
+          <p>Outpost 31</p>
+          <h2>Thin Ice</h2>
+        </div>
+      </div>
+      <div class="meters">
+        <div class="meter">
+          <span>Day</span>
+          <strong id="dayMeter">1</strong>
+        </div>
+        <div class="meter">
+          <span>Time</span>
+          <strong id="timeMeter">08:00</strong>
+        </div>
+        <div class="meter">
+          <span>Weather</span>
+          <strong id="weatherMeter">Clear</strong>
+        </div>
+        <div class="meter danger">
+          <span>Public</span>
+          <strong id="repMeter">50</strong>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button id="waitButton" type="button">Wait</button>
+        <button id="sleepButton" type="button">Night</button>
+        <button id="newRunButton" type="button">New Run</button>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <section class="board-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Board</p>
+            <h3 id="locationTitle">Rec Room</h3>
+          </div>
+          <span id="occupancyPill" class="pill">0/12</span>
+        </div>
+        <div class="board-frame">
+          <div id="boardMap" class="board-map" aria-label="Outpost 31 top-down board">
+            <img src="assets/base-map.png" alt="Top-down board of Outpost 31">
+            <svg id="routeLayer" class="route-layer" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+            <div id="nodeLayer" class="node-layer"></div>
+            <div id="tokenLayer" class="token-layer"></div>
+          </div>
+        </div>
+        <div id="outsideStrip" class="outside-strip"></div>
+      </section>
+
+      <section class="scene-panel">
+        <div class="scene-image">
+          <img id="sceneImage" src="assets/recreation-room.png" alt="">
+          <div id="sceneOverlay" class="scene-overlay"></div>
+        </div>
+        <div class="scene-copy">
+          <p id="sceneType" class="eyebrow">Indoor</p>
+          <h3 id="sceneName">Rec Room</h3>
+          <p id="sceneDescription">The ping-pong table waits under tired lamps.</p>
+        </div>
+        <div class="action-row" id="exitButtons"></div>
+        <div class="action-row" id="locationActions"></div>
+        <div class="panel-grid">
+          <article class="mini-panel">
+            <div class="section-title">Same Room</div>
+            <div id="occupantsList" class="occupants-list"></div>
+          </article>
+          <article class="mini-panel">
+            <div class="section-title">Conversation</div>
+            <div id="dialoguePanel" class="dialogue-panel"></div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="intel-panel">
+        <div class="tabs" role="tablist">
+          <button class="tab active" type="button" data-tab="roster">Roster</button>
+          <button class="tab" type="button" data-tab="journal">Journal</button>
+          <button class="tab" type="button" data-tab="gear">Gear</button>
+        </div>
+
+        <div id="tab-roster" class="tab-panel active">
+          <div id="playerCard" class="player-card"></div>
+          <div id="rosterList" class="roster-list"></div>
+        </div>
+
+        <div id="tab-journal" class="tab-panel">
+          <div class="section-title">Clues</div>
+          <div id="clueList" class="journal-list"></div>
+          <div class="section-title">Incident Log</div>
+          <div id="eventLog" class="journal-list"></div>
+        </div>
+
+        <div id="tab-gear" class="tab-panel">
+          <div id="inventoryList" class="inventory-list"></div>
+          <div class="section-title">Accusation</div>
+          <div class="accuse-box">
+            <select id="accuseTarget"></select>
+            <button id="accuseButton" type="button">Accuse</button>
+            <button id="burnButton" type="button">Use Fire</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="notificationStack" class="notification-stack" aria-live="polite"></div>
+  <div id="modalHost" class="modal-host hidden"></div>
+
+  <script src="game.js"></script>
+</body>
+</html>
